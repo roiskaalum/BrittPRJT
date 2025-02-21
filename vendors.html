@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="points-bar">Points: <span id="points">100</span></div>
+    <div class="points-bar">Points: <span id="points">0</span></div>
     
     <div class="container mt-5 pt-5">
         <h1 class="text-center">Vendors</h1>
@@ -36,6 +36,14 @@
 
     <script>
         $(document).ready(function() {
+            // Initialize points if not already set
+            if (!localStorage.getItem('points')) {
+                localStorage.setItem('points', '100');
+            }
+
+            // Update points display
+            $('#points').text(localStorage.getItem('points'));
+
             $("#vendorSearch").on("keyup", function() {
                 let value = $(this).val().toLowerCase();
                 $("#vendorList li").filter(function() {
